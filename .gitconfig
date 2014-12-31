@@ -16,7 +16,6 @@
 
 [core]
   excludesfile = ~/.gitignore_global
-  editor = subl -w
   autocrlf = input
   pager = less -FRSX
 
