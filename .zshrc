@@ -49,8 +49,7 @@ plugins=(git brew gem heroku history-substring-search npm rsync vagrant)
 
 # User configuration
 
-export PATH=./bin:$HOME/.cabal/bin:$HOME/dev/go/bin:/usr/local/share/npm/bin:$HOME/bin:/usr/local/bin:$PATH
-export GOPATH=$HOME/dev/go
+export PATH=$HOME/bin:/usr/local/share/npm/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -69,14 +68,17 @@ fi
 # hub wrapper for git
 function git(){hub "$@"}
 
-# rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
 # dvm
 eval "$(dvm env)"
 
 # autojump
 [[ -s $(brew --prefix)/etc/autojump.sh ]] && . $(brew --prefix)/etc/autojump.sh
+
+# rbenv
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+export PATH=./bin:$HOME/.cabal/bin:$HOME/dev/go/bin:$PATH
+export GOPATH=$HOME/dev/go
 
 export ARCHFLAGS="-arch x86_64"
 export SSH_KEY_PATH="~/.ssh/id_dsa"
