@@ -27,3 +27,6 @@
 
 [credential]
   helper = osxkeychain
+
+[include]
+  path = .secrets/git
