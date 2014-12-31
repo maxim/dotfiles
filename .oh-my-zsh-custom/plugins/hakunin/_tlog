@@ -1,0 +1,2 @@
+#compdef tlog
+compadd $(ls log/**/*.log | cut -d/ -f2- | sed -e 's/\.log$//')
