@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+
+values = ARGF.to_a.map(&:to_i)
+
+# Size
+size = values.size
+puts "Size: #{size}"
+
+# Mean
+sum = values.inject {|sum, v| sum += v}
+puts "Mean: #{'%.2f' % (sum / size.to_f)}"
+
+# Median
+mid = size / 2
+puts "Median: #{values[mid]}"
+
+# Mode
+freq = {}
+values.each do |v|
+  freq[v] ||= 0
+  freq[v] += 1
+end
+modes = []
+max_freq = freq.values.max
+if max_freq > 1
+  freq.each do |k, v|
+    modes << "#{k} (#{v})" if v == max_freq
+  end
+end
+puts "Mode: #{modes.join(', ')}"
+
+# Range
+range = values.max - values.min
+puts "Range: #{range}"

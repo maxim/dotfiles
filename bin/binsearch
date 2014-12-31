@@ -1,0 +1,43 @@
+#!/usr/bin/env ruby
+module ArgvExtensions
+  def arg
+    result = []
+    value_index = nil
+    ARGV.each_with_index do |el, i|
+      if !value_index
+        if (el !~ /^-/)
+          result << el
+        else
+          value_index = i + 1
+        end
+      else
+        value_index = nil
+      end
+    end
+    result.join('+')
+  end
+  
+  def opt(key)
+    value_index = ARGV.index("-#{key}") && ARGV.index("-#{key}") + 1
+    value_index && ARGV.at(value_index)
+  end
+  
+  def mode
+    identifier = ARGV.find{|el| el =~ /^--/} 
+    identifier ? identifier[2..-1] : nil
+  end
+end
+ARGV.extend(ArgvExtensions)
+
+if ARGV.mode == 'help'
+  puts "./binsearch [search_string] (optional: -d [num_of_days] -r [results_per_page])"
+else
+  if ARGV.arg.strip == ''
+    puts "Need args" 
+    exit(0)
+  end
+  
+  max = ARGV.opt('r') || 250
+  adv_age = ARGV.opt('d')
+  system "open \"http://binsearch.info/?q=#{ARGV.arg}&max=#{max}&adv_age=#{adv_age}\""
+end

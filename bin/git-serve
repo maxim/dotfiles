@@ -1,0 +1,2 @@
+# Serve current repo
+git daemon --verbose --export-all --base-path=.git --reuseaddr --strict-paths .git/

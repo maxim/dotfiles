@@ -1,0 +1,2 @@
+#!/usr/bin/env ruby
+STDIN.read.split("\n").each{ |line| puts line if (line =~ /CONFLICT/) }

@@ -1,0 +1,116 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'mechanize'
+require 'launchy'
+require 'keychain'
+
+data = {}
+
+FETCH = [
+  :astraweb,
+  :blocknews,
+  :tweaknews
+]
+
+GIGABYTES = 1073741824
+
+agent = Mechanize.new do |config|
+  config.user_agent_alias = 'Mac Firefox'
+  config.verify_mode = OpenSSL::SSL::VERIFY_NONE
+end
+
+def display(name, hash)
+  dl = '%.2f' % (hash[:downloaded] / GIGABYTES.to_f)
+  rm = '%.2f' % (hash[:remaining]  / GIGABYTES.to_f)
+  tt = '%.2f' % (hash[:total]      / GIGABYTES.to_f)
+
+  pp = ((hash[:downloaded] / hash[:total].to_f) * 100.0).to_i
+
+  puts "#{name.to_s.capitalize}: #{dl}/#{tt} GB used, #{pp}% used, " +
+    "#{rm} GB remaining"
+end
+
+if FETCH.include?(:astraweb)
+  begin
+    data[:astraweb] = { downloaded: nil, remaining: nil, total: nil }
+
+    page = agent.get('http://www.news.astraweb.com/members_v2.cgi')
+    captcha = page.image_with(src: /captcha/)
+
+    captcha_file = Tempfile.new(['astraweb-captcha', '.png'])
+    captcha.fetch.save!(captcha_file.path)
+    Launchy.open(captcha_file.path)
+    reply = [(print 'Enter captcha: '), gets.rstrip][1]
+    captcha_file.close
+    captcha_file.unlink
+
+    form = page.form('loginform')
+    form.user = ENV['ASTRAWEB_USER']
+    form.pass = ENV['ASTRAWEB_PASS']
+    form.reply = reply
+
+    page = agent.submit(form, form.buttons.first)
+
+    downloaded, remaining = page.search('font').map(&:text).select do |text|
+      text =~ /\A[\d,]+\s+bytes\s+\(\d/
+    end.map{ |s| s[/[\d,]+/].gsub(',', '').to_i }
+
+    data[:astraweb][:downloaded] = downloaded
+    data[:astraweb][:remaining]  = remaining
+    data[:astraweb][:total]      = downloaded + remaining
+
+    display :astraweb, data[:astraweb]
+  rescue => e
+    puts e.inspect
+    data.delete(:astraweb)
+    puts "Astraweb: failed"
+  end
+end
+
+if FETCH.include?(:blocknews)
+  begin
+    data[:blocknews] = { downloaded: nil, remaining: nil, total: nil }
+    page = agent.get('https://billing.blocknews.net/member.php')
+    form = page.form('login')
+    form.amember_login = ENV['BLOCKNEWS_USER']
+    form.amember_pass  = ENV['BLOCKNEWS_PASS']
+    page = agent.submit(form, form.buttons.first)
+    downloaded, total = page.search('td strong').map(&:text).select do |text|
+      text =~ /\A[\d\.]+\s+GBs/
+    end.map{ |s| (s[/[\d\.]+/].to_f * GIGABYTES).to_i }
+
+    data[:blocknews][:downloaded] = downloaded
+    data[:blocknews][:remaining]  = total - downloaded
+    data[:blocknews][:total]      = total
+
+    display :blocknews, data[:blocknews]
+  rescue
+    data.delete(:blocknews)
+    puts "Blocknews: failed"
+  end
+end
+
+if FETCH.include?(:tweaknews)
+  begin
+    data[:tweaknews] = { downloaded: nil, remaining: nil, total: nil }
+    page = agent.get('https://www.tweaknews.eu/?page=usageoverview')
+    form = page.form('contact')
+    form.gebruikersnaam = ENV['TWEAKNEWS_USER']
+    form.wachtwoord = ENV['TWEAKNEWS_PASS']
+    page = agent.submit(form, form.buttons.first)
+    total, remaining = page.search('td strong').map(&:text).select do |text|
+      text =~ /\A[\d\.]+[[:blank:]]+GB/
+    end.map{ |s| (s.to_f * GIGABYTES).to_i }
+
+    data[:tweaknews][:downloaded] = total - remaining
+    data[:tweaknews][:remaining]  = remaining
+    data[:tweaknews][:total]      = total
+
+    display :tweaknews, data[:tweaknews]
+  rescue
+    data.delete(:tweaknews)
+    puts "Tweaknews: failed"
+    raise
+  end
+end

@@ -1,0 +1,2 @@
+# Show only my commits log with dates
+git log --pretty=format:"%h | %ad %s" --date=local --date-order --author="$(git config user.name)"

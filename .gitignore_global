@@ -1,0 +1,8 @@
+*.gemtags
+*.sublime*
+*.tags
+*.tags_sorted_by_file
+*.tm_properties
+.ctrlp
+/config/initializers/hakunin_initializer.rb
+tmtags

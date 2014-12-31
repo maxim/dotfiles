@@ -1,0 +1,2 @@
+# List paths with conflicts (e.g. useful as git conflicts | xargs subl)
+git diff --name-only --diff-filter=U

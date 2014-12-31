@@ -1,0 +1,2 @@
+# Show all changes since my last commit in a single diff
+git diff $(git log --author="$(git config user.name)" --pretty=format:%H -n1)..

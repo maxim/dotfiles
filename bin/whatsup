@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+
+function findproc {
+  ps ax | grep -v grep | grep -q "$1"
+}
+
+findproc resque-web && echo resque-web
+findproc mailcatcher && echo mailcatcher
+findproc unicorn && echo unicorn
+findproc mysql && echo mysql
+findproc postgres && echo postgres
+findproc riak && echo riak
+findproc redis && echo redis
+findproc resque && echo resque
+findproc irb && echo irb
+findproc rasterizer && echo rasterizer
+findproc elasticsearch && echo elasticsearch
+findproc "rails server" && echo rails server

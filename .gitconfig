@@ -1,0 +1,33 @@
+[init]
+  templatedir = ~/.git_template
+
+[user]
+  name = Maxim Chernyak
+  email = max@bitsonnet.com
+
+[alias]
+  co = checkout
+  st = status -sb
+  # Push and track
+  publish = push -u
+
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  ui = auto
+
+[core]
+  excludesfile = ~/.gitignore_global
+  editor = subl -w
+  autocrlf = input
+  pager = less -FRSX
+
+[apply]
+  whitespace = nowarn
+
+[push]
+  default = current
+
+[credential]
+  helper = osxkeychain

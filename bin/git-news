@@ -1,0 +1,2 @@
+# Show commits since my last commit
+git log --pretty=format:'%Cgreen%h%Creset %s [%Cblue%an%Creset, %Cred%ar%Creset]%Creset' $(git log --author="$(git config user.name)" --pretty=format:%H -n1)..
