@@ -1,6 +1,3 @@
-[init]
-  templatedir = ~/.git_template
-
 [user]
   name = Maxim Chernyak
   email = max@bitsonnet.com
