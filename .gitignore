@@ -61,6 +61,7 @@
 /.zsh-update
 /.zsh_history
 /Applications
+/bin/subl
 /Desktop
 /dev
 /Documents
