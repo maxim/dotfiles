@@ -75,6 +75,9 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 # dvm
 eval "$(dvm env)"
 
+# autojump
+[[ -s $(brew --prefix)/etc/autojump.sh ]] && . $(brew --prefix)/etc/autojump.sh
+
 export ARCHFLAGS="-arch x86_64"
 export SSH_KEY_PATH="~/.ssh/id_dsa"
 export NEWRELIC_ENABLE='false'
