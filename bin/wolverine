@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+# Usage:
+# wolverine [1rm]
+
+orm = ARGV[0].to_i
+
+[ [[60, 65, 75, 75], '4x5' ],
+  [[65, 75, 85, 85], '4x4' ],
+  [[70, 80, 90, 90], '4x3' ],
+  [[40, 50, 60, 60], '4x10'] ].each.with_index do |(sets, desc), i|
+  puts "W#{i+1} " +
+    sets.map{|f| ((orm * (f / 100.0)) / 5.0).round * 5 }.join(',') +
+    " #{desc}"
+end
