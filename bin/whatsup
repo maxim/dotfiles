@@ -16,3 +16,4 @@ findproc irb && echo irb
 findproc rasterizer && echo rasterizer
 findproc elasticsearch && echo elasticsearch
 findproc "rails server" && echo rails server
+findproc spring && echo spring
