@@ -44,7 +44,3 @@ function track_git_branch() {
     git branch --set-upstream `current_branch` origin/`current_branch`;
   fi
 }
-
-function printio_servers() {
-  cat $HOME/dev/printio/stack/hosts/production | cut -d' ' -f1 | sed -e '/:/,$d' | grep -v "\[" | grep --color=never .
-}

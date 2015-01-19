@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+#
+# USAGE
+# prun [all|bgservers|...] [command]
+pssh -i -H "`ansible $1 --list-hosts -i ~/dev/printio/stack/hosts/production`" "$2"

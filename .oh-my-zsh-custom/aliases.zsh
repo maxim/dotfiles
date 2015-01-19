@@ -40,6 +40,3 @@ alias gemfile_outdated="grep -Po 'gem\s+(\S+)' Gemfile | cut -d\"'\" -f 2 | cut 
 
 # sublime
 alias sp='subl "${PWD##*/}.sublime-project"'
-
-# pssh
-alias prun='pssh -i -H "`printio_servers`"'
