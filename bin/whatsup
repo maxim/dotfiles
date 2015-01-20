@@ -1,4 +1,12 @@
 #!/usr/bin/env sh
+#
+# USAGE
+#
+# see what's running:
+# whatsup
+#
+# kill what's running:
+# whatsup | xargs -p pkill -f
 
 function findproc {
   ps ax | grep -v grep | grep -q "$1"
