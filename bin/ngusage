@@ -94,14 +94,19 @@ end
 if FETCH.include?(:tweaknews)
   begin
     data[:tweaknews] = { downloaded: nil, remaining: nil, total: nil }
-    page = agent.get('https://www.tweaknews.eu/?page=usageoverview')
-    form = page.form('contact')
-    form.gebruikersnaam = ENV['TWEAKNEWS_USER']
-    form.wachtwoord = ENV['TWEAKNEWS_PASS']
+
+    page = agent.get('https://members.tweaknews.eu/en')
+    form = page.forms.find{ |f| f.fields.map(&:name).include?('password') }
+    form.username = ENV['TWEAKNEWS_USER']
+    form.password = ENV['TWEAKNEWS_PASS']
     page = agent.submit(form, form.buttons.first)
-    total, remaining = page.search('td strong').map(&:text).select do |text|
-      text =~ /\A[\d\.]+[[:blank:]]+GB/
-    end.map{ |s| (s.to_f * GIGABYTES).to_i }
+    total_str = page.search('div.col-md-6').map(&:text).find do |t|
+      t =~ /Block\s+Package/
+    end
+    tds = page.search('td').map(&:text)
+    remaining_str = tds[tds.find_index{|t| t =~ /Data\s+Remaining/} + 1]
+    total = (total_str[/\s+(\d+)GB\s+/, 1].to_f * GIGABYTES).to_i
+    remaining = (remaining_str.to_f * GIGABYTES).to_i
 
     data[:tweaknews][:downloaded] = total - remaining
     data[:tweaknews][:remaining]  = remaining
