@@ -1,7 +1,7 @@
 call pathogen#infect()
 
 set nocompatible
-set history=1000
+set history=10000
 
 " Buffers
 set hidden            " Keep buffer loaded if it's not displayed anywhere
@@ -28,13 +28,13 @@ set hlsearch             " Highlight all matches
 set ignorecase smartcase " Ignore case unless uppercase letters present
 
 " Visuals
-set winwidth=79
+set winwidth=80
 set cursorline     " Highlight cursor line
 set cmdheight=2    " Height of command line
 set laststatus=2   " Always show status line on last window
 set numberwidth=5  " Minimum cols for line number gutter
 set showtabline=2  " Always show tabline
-set colorcolumn=80 " Draw vertical line on screen
+set colorcolumn=81 " Draw vertical line on screen
 set number         " Display line numbers
 set showcmd        " Show command on the bottom as it's entered
 " Use the same symbols as TextMate for tabstops and EOLs
