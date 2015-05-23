@@ -66,7 +66,7 @@ else
 fi
 
 # hub wrapper for git
-function git(){hub "$@"}
+eval "$(hub alias -s)"
 
 # dvm
 eval "$(dvm env)"
