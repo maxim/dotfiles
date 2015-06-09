@@ -68,8 +68,10 @@ fi
 # hub wrapper for git
 eval "$(hub alias -s)"
 
-# dvm
-eval "$(dvm env)"
+# boot2docker
+export DOCKER_HOST=tcp://192.168.59.103:2376
+export DOCKER_CERT_PATH=/Users/max/.boot2docker/certs/boot2docker-vm
+export DOCKER_TLS_VERIFY=1
 
 # autojump
 [[ -s $(brew --prefix)/etc/autojump.sh ]] && . $(brew --prefix)/etc/autojump.sh
