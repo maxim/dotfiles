@@ -79,7 +79,7 @@ export DOCKER_TLS_VERIFY=1
 # rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-export PATH=./bin:$HOME/.cabal/bin:$HOME/dev/go/bin:$PATH
+export PATH=./bin:$HOME/.cabal/bin:$HOME/dev/go/bin:$HOME/.secrets/bin:$PATH
 export GOPATH=$HOME/dev/go
 
 export ARCHFLAGS="-arch x86_64"
