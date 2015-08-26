@@ -14,6 +14,14 @@ function schema() {
   fi
 }
 
+function structure() {
+  if test "$1" = ""; then
+    grep 'CREATE TABLE' db/structure.sql | cut -d " " -f3
+  else
+    sed -n "/CREATE TABLE $1 (/,/^);$/p" db/structure.sql
+  fi
+}
+
 function sizeup() {
   wc -l $1/**/* 2>/dev/null | sort -r
 }
