@@ -6,6 +6,8 @@ function tlog() {
   fi
 }
 
+# schema - list table names
+# schema users - show structure of table users
 function schema() {
   if test "$1" = ""; then
     grep 'create_table' db/schema.rb | cut -d \" -f2
@@ -14,6 +16,8 @@ function schema() {
   fi
 }
 
+# structure - list table names
+# structure users - show structure of table users
 function structure() {
   if test "$1" = ""; then
     grep 'CREATE TABLE' db/structure.sql | cut -d " " -f3
