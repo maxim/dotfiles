@@ -3,7 +3,6 @@
 require 'rubygems'
 require 'mechanize'
 require 'launchy'
-require 'keychain'
 
 data = {}
 
@@ -76,9 +75,10 @@ if FETCH.include?(:blocknews)
     form.amember_login = ENV['BLOCKNEWS_USER']
     form.amember_pass  = ENV['BLOCKNEWS_PASS']
     page = agent.submit(form, form.buttons.first)
-    downloaded, total = page.search('td strong').map(&:text).select do |text|
-      text =~ /\A[\d\.]+\s+GBs/
-    end.map{ |s| (s[/[\d\.]+/].to_f * GIGABYTES).to_i }
+    stats = page.search('div#member-main-subscriptions div p').map(&:text).first
+    downloaded, total = stats.scan(/\d+(?:\.\d+)*/).map { |v|
+      (v.to_f * GIGABYTES).to_i
+    }
 
     data[:blocknews][:downloaded] = downloaded
     data[:blocknews][:remaining]  = total - downloaded
