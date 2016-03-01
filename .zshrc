@@ -68,11 +68,6 @@ fi
 # hub wrapper for git
 eval "$(hub alias -s)"
 
-# boot2docker
-export DOCKER_HOST=tcp://192.168.59.103:2376
-export DOCKER_CERT_PATH=/Users/max/.boot2docker/certs/boot2docker-vm
-export DOCKER_TLS_VERIFY=1
-
 # autojump
 [[ -s $(brew --prefix)/etc/autojump.sh ]] && . $(brew --prefix)/etc/autojump.sh
 
@@ -87,6 +82,9 @@ export SSH_KEY_PATH="~/.ssh/id_dsa"
 export NEWRELIC_ENABLE='false'
 export BLENDER_BIN='/Applications/Blender/blender.app/Contents/MacOS/blender'
 
+source /usr/local/share/zsh/site-functions/_aws
+
+eval "$(docker-machine env default)"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -96,3 +94,5 @@ export BLENDER_BIN='/Applications/Blender/blender.app/Contents/MacOS/blender'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
