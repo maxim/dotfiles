@@ -1,0 +1,63 @@
+#!/usr/bin/env ruby
+
+require 'json'
+
+url = ARGV.first
+
+id = if url =~ /\A\d+\z/
+  url.to_i
+else
+  url[/palette\/(\d+)/, 1].to_i
+end
+
+api_url = "http://www.colourlovers.com/api/palette/#{id}?format=json"
+result = `curl -s #{api_url}`
+hash = JSON.parse(result).first
+
+if hash.nil?
+  STDERR.puts "API failed on this url, try another."
+  exit(1)
+end
+
+def hex_to_lightness(hex)
+  hex.chars.each_slice(2).map{ |slice| Integer("0x#{slice.join}") }.inject(&:+)
+end
+
+# sorted from dark to light
+hexes = hash['colors'].first(5).sort_by { |hex| hex_to_lightness(hex) }
+
+case hexes.size
+when 5
+  base = hexes[0]
+  links = hexes[3]
+  small = hexes[1]
+  headers = hexes[4]
+  bio = hexes[2]
+when 4
+  base = hexes[0]
+  links = hexes[3]
+  small = hexes[1]
+  headers = hexes[2]
+  bio = hexes[0]
+when 3
+  base = hexes[0]
+  links = hexes[2]
+  small = hexes[1]
+  headers = hexes[1]
+  bio = hexes[0]
+when 2
+  base = hexes[0]
+  links = hexes[1]
+  small = hexes[0]
+  headers = hexes[0]
+  bio = hexes[0]
+end
+
+[ base,
+  links,
+  small,
+  headers,
+  bio
+].each.with_index do |hex, i|
+  puts "$palette#{i+1}: ##{hex};"
+end
