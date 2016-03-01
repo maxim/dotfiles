@@ -7,3 +7,4 @@
 .ctrlp
 /config/initializers/hakunin_initializer.rb
 tmtags
+Procfile-hakunin
