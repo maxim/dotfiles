@@ -44,6 +44,7 @@
 /.omnifocus-trello.yml
 /.oracle*
 /.pgpass
+/.packer.d
 /.pry_history
 /.psql_history
 /.rbenv
@@ -73,6 +74,7 @@
 /bin/docker*
 /bin/subl
 /bin/terraform*
+/bin/packer*
 /Desktop
 /dev
 /Documents
