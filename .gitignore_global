@@ -6,5 +6,6 @@
 *.tm_properties
 .ctrlp
 /config/initializers/hakunin_initializer.rb
+stdout
 tmtags
 Procfile-hakunin
