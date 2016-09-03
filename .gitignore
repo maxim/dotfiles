@@ -15,12 +15,15 @@
 /.cache
 /.CFUserTextEncoding
 /.config
+/.coreos
 /.cups
 /.docker
+/.doctlcfg
 /.dropbox
 /.dvm
 /.ec2
 /.elinks
+/.elm
 /.erlang.cookie
 /.exercism.json
 /.fontconfig
@@ -36,12 +39,14 @@
 /.irb_history
 /.lesshst
 /.local
+/.minikube
 /.mix
 /.mysql_history
 /.netrc
 /.node-gyp
 /.npm
 /.omnifocus-trello.yml
+/.odrive
 /.oracle*
 /.pgpass
 /.packer.d
@@ -85,11 +90,14 @@
 /Executables
 /exercism
 /Google Drive
+/kube-solo
 /Library
+/LimeChat Transcripts
 /Limelight
 /Movies
 /Music
 /node_modules
+/odrive
 /Pictures
 /Public
 /VirtualBox VMs
