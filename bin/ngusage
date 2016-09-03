@@ -12,6 +12,7 @@ FETCH = [
   :tweaknews
 ]
 
+MEGABYTES = 1048576
 GIGABYTES = 1073741824
 
 agent = Mechanize.new do |config|
@@ -92,6 +93,8 @@ if FETCH.include?(:blocknews)
 end
 
 if FETCH.include?(:tweaknews)
+  tw_package_index_from_top = 1
+
   begin
     data[:tweaknews] = { downloaded: nil, remaining: nil, total: nil }
 
@@ -100,13 +103,21 @@ if FETCH.include?(:tweaknews)
     form.username = ENV['TWEAKNEWS_USER']
     form.password = ENV['TWEAKNEWS_PASS']
     page = agent.submit(form, form.buttons.first)
-    total_str = page.search('div.col-md-6').map(&:text).find do |t|
+    total_str = page.search('div.col-md-6').map(&:text).select { |t|
       t =~ /Block\s+Package/
-    end
+    }[tw_package_index_from_top]
+
     tds = page.search('td').map(&:text)
-    remaining_str = tds[tds.find_index{|t| t =~ /Data\s+Remaining/} + 1]
+
+    remaining_str =
+      tds
+      .each_cons(2)
+      .select{|p| p[0] =~ /Data\s+Remaining/}[tw_package_index_from_top][1]
+
     total = (total_str[/\s+(\d+)GB\s+/, 1].to_f * GIGABYTES).to_i
-    remaining = (remaining_str.to_f * GIGABYTES).to_i
+
+    rem_factor = remaining_str =~ /MB/ ? MEGABYTES : GIGABYTES
+    remaining = (remaining_str.to_f * rem_factor).to_i
 
     data[:tweaknews][:downloaded] = total - remaining
     data[:tweaknews][:remaining]  = remaining
