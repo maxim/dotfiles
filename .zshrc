@@ -77,8 +77,6 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 export PATH=./Binaries:$HOME/.secrets/bin:$PATH
 export ARCHFLAGS="-arch x86_64"
 
-source /usr/local/share/zsh/site-functions/_aws
-
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -89,3 +87,6 @@ source /usr/local/share/zsh/site-functions/_aws
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
+
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+source /usr/local/opt/chruby/share/chruby/auto.sh
