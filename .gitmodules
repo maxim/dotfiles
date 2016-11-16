@@ -19,6 +19,3 @@
 [submodule ".vim/bundle/vim-tomorrow-theme"]
 	path = .vim/bundle/vim-tomorrow-theme
 	url = https://github.com/chriskempson/vim-tomorrow-theme
-[submodule "bin/src/takeup"]
-	path = bin/src/takeup
-	url = https://github.com/maxim/takeup
