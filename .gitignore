@@ -79,11 +79,11 @@
 /.zsh-update
 /.zsh_history
 /Applications
-/bin/cx
-/bin/docker*
-/bin/subl
-/bin/terraform*
-/bin/packer*
+/Binaries/cx
+/Binaries/docker*
+/Binaries/subl
+/Binaries/terraform*
+/Binaries/packer*
 /Desktop
 /dev
 /Documents

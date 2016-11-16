@@ -74,13 +74,8 @@ eval "$(hub alias -s)"
 # rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-export PATH=./bin:$HOME/.cabal/bin:$HOME/dev/go/bin:$HOME/.secrets/bin:$PATH
-export GOPATH=$HOME/dev/go
-
+export PATH=./Binaries:$HOME/.secrets/bin:$PATH
 export ARCHFLAGS="-arch x86_64"
-export SSH_KEY_PATH="~/.ssh/id_dsa"
-export NEWRELIC_ENABLE='false'
-export BLENDER_BIN='/Applications/Blender/blender.app/Contents/MacOS/blender'
 
 source /usr/local/share/zsh/site-functions/_aws
 
