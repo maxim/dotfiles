@@ -14,6 +14,7 @@
 /.cabal
 /.cache
 /.CFUserTextEncoding
+/.cloud66
 /.config
 /.coreos
 /.cups
@@ -26,6 +27,7 @@
 /.elm
 /.erlang.cookie
 /.exercism.json
+/.flynn
 /.fontconfig
 /.freemind
 /.gdb_history
@@ -71,11 +73,13 @@
 /.vim-tmp
 /.viminfo
 /.vim/.netrwhist
+/.vscode
 /.Xauthority
 /.zcompdump*
 /.zsh-update
 /.zsh_history
 /Applications
+/bin/cx
 /bin/docker*
 /bin/subl
 /bin/terraform*
