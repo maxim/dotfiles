@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+project="${PWD##*/}.sublime-project";
+
+if [ -f $project ]; then
+  subl $project
+else
+  subl .
+fi

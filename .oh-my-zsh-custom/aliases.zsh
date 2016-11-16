@@ -37,6 +37,3 @@ alias pgrep='ps ax | grep -v grep | grep $1'
 
 # bundler
 alias gemfile_outdated="grep -Po 'gem\s+(\S+)' Gemfile | cut -d\"'\" -f 2 | cut -d'\"' -f2 | xargs bundle outdated"
-
-# sublime
-alias sp='subl "${PWD##*/}.sublime-project"'
