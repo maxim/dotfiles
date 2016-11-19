@@ -71,10 +71,10 @@ eval "$(hub alias -s)"
 # autojump
 [[ -s $(brew --prefix)/etc/autojump.sh ]] && . $(brew --prefix)/etc/autojump.sh
 
-# rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+source /usr/local/opt/chruby/share/chruby/auto.sh
 
-export PATH=./Binaries:$HOME/.secrets/bin:$PATH
+export PATH=./bin:$HOME/Binaries:$HOME/.secrets/bin:$PATH
 export ARCHFLAGS="-arch x86_64"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
@@ -88,5 +88,3 @@ export ARCHFLAGS="-arch x86_64"
 
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
 
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-source /usr/local/opt/chruby/share/chruby/auto.sh
