@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
+
+# Supports wildcards
 tar -tvf "$1" "$2"
