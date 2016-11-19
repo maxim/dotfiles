@@ -1,0 +1,59 @@
+---
+- hosts: all
+  connection: local
+
+  tasks:
+    - homebrew:
+        update_homebrew: yes
+        state: present
+        name: "{{ item }}"
+      with_items:
+        # Shell
+        - zsh
+
+        # CLI Utilities
+        - autojump
+        - git
+        - git-extras
+        - hub
+        - imagemagick
+        - ncdu
+        - pssh
+        - tree
+        - vim
+        - watch
+        - wget
+        - youtube-dl
+        - michaeldfallen/formula/git-radar
+        - postgresql # needed for libpq so that pg gem can compile
+        - ffmpeg
+
+        # Languages
+        - elixir
+        - chruby
+        - ruby-install
+    - homebrew_cask:
+        update_homebrew: yes
+        install_options: "appdir=/Applications"
+        state: present
+        name: "{{ item }}"
+      with_items:
+        - odrive
+        - appcleaner
+        - backblaze
+        - gog-galaxy
+        - grandperspective
+        - imageoptim
+        - yujitach-menumeters
+        - iterm2
+        - limechat
+        - nvalt
+        - pandora
+        - rowanj-gitx
+        - sabnzbd
+        - skitch
+        - skype
+        - steam
+        - google-chrome
+        - vlc
+        - docker
