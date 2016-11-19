@@ -40,6 +40,7 @@
 /.heroku
 /.hex
 /.irb_history
+/.iterm2*
 /.lesshst
 /.local
 /.minikube
