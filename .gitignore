@@ -7,6 +7,7 @@
 /.autojump.txt*
 /.aws
 /.bash_history
+/.bash_sessions
 /.boot2docker
 /.bundle
 /.byebug_hist
@@ -58,6 +59,7 @@
 /.rdebug_hist
 /.rediscli_history
 /.rnd
+/.rubies
 /.ruby_inline
 /.secrets
 /.sh_history
