@@ -57,3 +57,16 @@
         - google-chrome
         - vlc
         - docker
+
+        # Quicklook plugins
+        - qlcolorcode        # highlighted code
+        - qlstephen          # files without extension
+        - qlmarkdown
+        - quicklook-json
+        - qlprettypatch      # patch files
+        - quicklook-csv
+        - betterzipql        # archives
+        - qlimagesize        # image preview with res/size
+        - webpquicklook      # webp support
+        - suspicious-package # apple's .app format
+        - qlvideo            # extra video formats
