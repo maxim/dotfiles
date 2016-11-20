@@ -43,7 +43,7 @@ External folders: `Unsorted`, `Documents`, `Downloads`
 3. Right click Downloads and sync folder to `Box/Downloads`
 4. Right click Documents and sync folder to `Google Drive/Documents`
 5. Right click Documents and Sync everything (Include subfolders + Save)
-6. Make folder on Desktop: Unsorted, and sync to `Google Drive/Desktop`
+6. Make folder on Desktop: Unsorted, and sync to `Google Drive/Desktop/Unsorted`
 
 ### Install Mac App Store apps
 
