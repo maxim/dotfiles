@@ -3,7 +3,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Oh My Zsh config
 ZSH_THEME="hakunin3"
 DISABLE_AUTO_UPDATE="true"
-ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="false"
 HIST_STAMPS="yyyy-mm-dd"
 ZSH_CUSTOM=$HOME/.oh-my-zsh-custom
 plugins=(git brew history-substring-search rsync)
