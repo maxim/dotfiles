@@ -25,10 +25,30 @@ eval "$(hub alias -s)"
 # Autojump
 [[ -s $(brew --prefix)/etc/autojump.sh ]] && . $(brew --prefix)/etc/autojump.sh
 
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-source /usr/local/opt/chruby/share/chruby/auto.sh
+# Chruby
+if [[ -e /usr/local/opt/chruby/share/chruby/chruby.sh ]]; then
+  source /usr/local/opt/chruby/share/chruby/chruby.sh
+  [[ -r ~/.ruby-version ]] && chruby $(cat ~/.ruby-version)
+  source /usr/local/opt/chruby/share/chruby/auto.sh
+fi
 
+function prepend_or_remove_path() {
+  if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+    PATH="$1${PATH:+":$PATH"}"
+  elif [[ ! -d "$1" ]] && [[ ":$PATH:" == *":$1:"* ]]; then
+    PATH=$(echo $PATH | sed -e 's|^./bin:||')
+  fi
+}
 
+function set_local_bin_path() {
+  prepend_or_remove_path "./bin"
+}
+
+if [[ -n "$ZSH_VERSION" ]]; then
+  if [[ ! "$preexec_functions" == *set_local_bin_path* ]]; then
+    preexec_functions+=("set_local_bin_path")
+  fi
+fi
 
 # Misc
 export ARCHFLAGS="-arch x86_64"
