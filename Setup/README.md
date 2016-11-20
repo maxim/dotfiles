@@ -67,7 +67,8 @@ Install latest dev version manually.
 
 ### Setup Ruby
 
-Run `ruby-install ruby 2.3.2` (change version to whatever you want)
+- Run `ruby-install ruby 2.3.2` (change version to whatever you want)
+- `echo "2.3.2" > ~/.ruby-version` (chruby default)
 
 ## Setup ssh keys
 
