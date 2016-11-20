@@ -32,6 +32,7 @@
         - elixir
         - chruby
         - ruby-install
+        - v8
     - homebrew_cask:
         update_homebrew: yes
         install_options: "appdir=/Applications"
