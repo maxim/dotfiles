@@ -113,6 +113,7 @@ git submodule update --init --recursive
 3. Transfer System stuff
 4. Transfer /etc/hosts
 5. Transfer dev projects via uncompressed tarball
+6. Transfer ~/.aws dir
 
 ## Dev projects
 
