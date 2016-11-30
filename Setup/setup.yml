@@ -27,6 +27,7 @@
         - michaeldfallen/formula/git-radar
         - postgresql # needed for libpq so that pg gem can compile
         - ffmpeg
+        - terraform
 
         # Languages
         - elixir
@@ -58,6 +59,7 @@
         - google-chrome
         - vlc
         - docker
+        - screenhero
 
         # Quicklook plugins
         - qlcolorcode        # highlighted code
