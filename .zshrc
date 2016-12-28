@@ -16,7 +16,7 @@ source $HOME/.secrets/env
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='subl'
+  export EDITOR='subl -nw'
 fi
 
 # Hub
