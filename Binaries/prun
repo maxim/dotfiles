@@ -4,4 +4,4 @@
 # prun [all|bgservers|...] [command]
 group=$1
 shift
-pssh -i -H "`ansible $group --list-hosts -i ~/dev/printio/stack/hosts/production`" $*
+pssh -i -H "`ansible $group --list-hosts -i ~/Projects/printio/stack/hosts/production`" $*
