@@ -28,12 +28,22 @@
         - postgresql # needed for libpq so that pg gem can compile
         - ffmpeg
         - terraform
+        - jq
+        - homebrew/dupes/rsync # mac version doesn't work with ansible
 
         # Languages
-        - elixir
-        - chruby
-        - ruby-install
         - v8
+
+        # Stuff needed for asdf installs
+        - automake
+        - autoconf
+        - openssl
+        - libyaml
+        - readline
+        - libxslt
+        - libtool
+        - unixodbc
+        - wxmac
     - homebrew_cask:
         update_homebrew: yes
         install_options: "appdir=/Applications"
