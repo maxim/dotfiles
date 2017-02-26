@@ -25,12 +25,8 @@ eval "$(hub alias -s)"
 # Autojump
 [[ -s $(brew --prefix)/etc/autojump.sh ]] && . $(brew --prefix)/etc/autojump.sh
 
-# Chruby
-if [[ -e /usr/local/opt/chruby/share/chruby/chruby.sh ]]; then
-  source /usr/local/opt/chruby/share/chruby/chruby.sh
-  [[ -r ~/.ruby-version ]] && chruby $(cat ~/.ruby-version)
-  source /usr/local/opt/chruby/share/chruby/auto.sh
-fi
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
 
 function prepend_or_remove_path() {
   if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then

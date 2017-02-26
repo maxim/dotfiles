@@ -65,10 +65,10 @@ Install latest dev version manually.
 
 (Follow the install order and common sense)
 
-### Setup Ruby
+### Setup asdf
 
-- Run `ruby-install ruby 2.3.2` (change version to whatever you want)
-- `echo "2.3.2" > ~/.ruby-version` (chruby default)
+Follow setup instructions here: https://github.com/asdf-vm/asdf
+Except the deps packages are already installed.
 
 ## Setup ssh keys
 
