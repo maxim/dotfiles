@@ -51,3 +51,4 @@ export ARCHFLAGS="-arch x86_64"
 test -e ${HOME}/.iterm2_shell_integration.zsh && \
   source ${HOME}/.iterm2_shell_integration.zsh
 
+export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
