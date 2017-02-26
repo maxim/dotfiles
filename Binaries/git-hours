@@ -1,0 +1,59 @@
+#!/usr/bin/env ruby
+
+require 'time'
+
+*paths, date = ARGV
+date = Date.parse(date)
+midnight = date.to_time
+
+def format_duration(secs); Time.at(secs).utc.strftime("%H:%M:%S") end
+def mins(m); m * 60 end
+def hours(h); h * 60 * 60 end
+
+####### CONFIGURATION ##########################################################
+base = '/Users/max/Projects' #
+time_start = midnight + hours(8) # 8am
+################################################################################
+
+time_end = time_start + hours(23) + mins(59) + 59 # a second before new day
+
+git_log = 'git log '\
+  '--pretty=format:"%ad | %s" '\
+  '--date=iso '\
+  '--date-order '\
+  '--author="$(git config user.name)"'
+
+data = {}
+
+paths.each do |path|
+  full_path = "#{base}/#{path}"
+  log = `cd #{full_path} && #{git_log}`
+
+  data[path] = []
+  log.each_line do |line|
+    time, msg = line.split('|', 2).map(&:strip)
+    time = Time.parse(time)
+
+    if (time_start..time_end).cover?(time)
+      data[path] << [time, msg]
+    end
+  end
+end
+
+min_time, max_time = data.map{|p, msgs| msgs.map(&:first)}.flatten.minmax
+overall_time = max_time.to_i - min_time.to_i
+
+puts "\n"
+data.each do |project, msgs|
+  unless msgs.empty?
+    total_time = msgs.first[0] - msgs.last[0]
+    puts "#{project} (total time: ~#{format_duration(total_time)}):\n"
+
+    msgs.each do |(time, msg)|
+      puts "  #{time} | #{msg}"
+    end
+    puts "\n"
+  end
+end
+
+puts "OVERALL: ~#{format_duration(overall_time)}\n\n"
