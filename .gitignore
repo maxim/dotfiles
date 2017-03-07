@@ -3,9 +3,11 @@
 *~
 /.adobe
 /.ansible
+/.asdf
 /.atom
 /.autojump.txt*
 /.aws
+/.babel.json
 /.bash_history
 /.bash_sessions
 /.boot2docker
@@ -41,6 +43,7 @@
 /.hex
 /.irb_history
 /.iterm2*
+/.jspm
 /.lesshst
 /.local
 /.minikube
@@ -72,6 +75,7 @@
 /.terraform.d
 /.Trash
 /.tugboat
+/.v8flags.*
 /.vagrant.d
 /.vim-tmp
 /.viminfo
@@ -79,6 +83,7 @@
 /.vscode
 /.wget*
 /.Xauthority
+/.yarnrc
 /.zcompdump*
 /.zsh-update
 /.zsh_history
