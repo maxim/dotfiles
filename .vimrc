@@ -34,7 +34,7 @@ set cmdheight=2    " Height of command line
 set laststatus=2   " Always show status line on last window
 set numberwidth=5  " Minimum cols for line number gutter
 set showtabline=2  " Always show tabline
-set colorcolumn=81 " Draw vertical line on screen
+" set colorcolumn=81 " Draw vertical line on screen
 set number         " Display line numbers
 set showcmd        " Show command on the bottom as it's entered
 " Use the same symbols as TextMate for tabstops and EOLs
@@ -84,9 +84,9 @@ augroup END
 
 " Colors
 :set t_Co=256
-:color Tomorrow-Night
-hi ColorColumn ctermbg=234 guibg=black
-hi CursorLine cterm=NONE
+" :color Tomorrow-Night
+" hi ColorColumn ctermbg=234 guibg=black
+" hi CursorLine cterm=NONE
 "hi CursorColumn cterm=NONE ctermbg=gray guibg=gray
 
 " Key maps
